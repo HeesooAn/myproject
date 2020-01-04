@@ -1,0 +1,15 @@
+[
+    {
+        "keys": ["ctrl+shift+f"], 
+        "command": "reindent", 
+        "args": {"single_line": false}
+    },
+    { "keys": ["f12"],
+        "command": "side_bar_open_in_browser" ,
+        "args":{"paths":[], "type":"testing", "browser":"chrome"}
+    },
+    { "keys": ["alt+f12"],
+        "command": "side_bar_open_in_browser",
+        "args":{"paths":[], "type":"production", "browser":"Firefox"}
+    }
+]
