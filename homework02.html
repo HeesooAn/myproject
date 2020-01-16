@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- open in browser: f12 -->
+	<!-- Webpage Title -->
+	<title>Hello, world!</title>
+
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	<!-- JS -->   
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+	<!-- 구글폰트 -->
+	<link href="https://fonts.googleapis.com/css?family=Cute+Font&display=swap" rel="stylesheet">
+
+	<style type="text/css">
+
+		* {
+			font-family: 'Cute Font', cursive;
+		}
+
+		.wrap {
+			width: 400px;
+			margin: 50px auto 0 auto;
+		}
+		.ib{
+			display: inline-block;
+		}
+		.title{
+			font-size: 25px;
+		}
+		.content{
+			font-size: 10px;
+		}
+
+	</style>
+
+	<script type="text/javascript">
+
+		function orderButtonClick()
+		{
+			/* < 주문양식의 빈칸 체크 부분 > */
+			var orderInfoList = $('.input-group-text'); // html text값들입니다.
+			var orderInputList = $('.form-control'); // input 값들입니다.
+			for(var i=0; i<orderInputList.length; i++)
+			{
+				if(orderInputList[i]["value"] == ""  || orderInputList[i]["value"] == "---수량을 선택하세요---") // 빈칸이면
+				{
+					alert("[" + orderInfoList.eq(i).text() + "] 칸이 비었어요! 채워주세요 :)");
+					orderInputList[i].focus();
+					return;
+				}
+			}
+
+			/* < 전화번호(orderInputList[3]) 양식 체크 부분 > */
+			// 첫번째 조건: 입력된 숫자가 13개 인가?
+			// 두번째 조건: 4번째, 9번째 입력값이 "-" 인가?
+			// 세번째 조건: 앞의 3자리가 010인가?
+			var phoneNumber = orderInputList[3]['value'];
+			var phoneNumberLength = phoneNumber.length;
+			var phoneNumberFormat = phoneNumber[0] + phoneNumber[1] + phoneNumber[2] + phoneNumber[3] + phoneNumber[8];
+
+			if((phoneNumberLength == 13) && (phoneNumberFormat == "010--"))
+			{
+				alert("맞습니다.");
+			}
+			else
+			{
+				alert("010-0000-0000 양식으로 입력해주세요 :)");
+			}
+		}
+
+	</script>
+
+
+</head>
+<body>
+
+	<div class="wrap">
+		<!-- 제품사진 -->
+		<div>
+			<center><img src="https://thumbnail13.coupangcdn.com/thumbnails/remote/300x300ex/image/retail/images/2017/10/13/14/1/fa704841-5fb0-4a0a-b06f-8070870429e6.jpg"></center>
+		</div>
+
+		<!-- 제품가격 및 설명 -->
+		<div>
+			<div class="ib title">대왕곰인형 팝니다.</div>
+			<div class="ib content">가격: 34,000원/개</div>
+			<p>이 곰돌이는 영국에서 시작되어 산넘고 바다건너 비행기를 타고 한국에 막 상륙한 오직 당신만을 위해 제작된 세상에 단 하나뿐인 단독 상품!!!</p>
+		</div>
+
+		<!-- 주문 정보 -->
+		<div>
+			<!-- 주문자 이름 -->
+			<div id="order-name" class="input-group mb-2">
+				<!-- <div class="input-group-prepend"> -->
+					<div class="input-group-text hh">주문자 이름</div>
+				<!-- </div> -->
+				<input type="text" class="form-control">
+			</div>
+
+			<!-- 수량 -->
+			<div class="input-group mb-2">
+				<div class="input-group-prepend">
+					<div class="input-group-text">수량</div>
+				</div>
+				<select id="order-count" class="custom-select mr-sm-2 form-control">
+					<option selected>---수량을 선택하세요---</option>
+					<option value="1">One</option>
+					<option value="2">Two</option>
+					<option value="3">Three</option>
+				</select>
+			</div>
+
+			<!-- 주소 -->
+			<div class="input-group mb-2">
+				<div class="input-group-prepend">
+					<div class="input-group-text">주소</div>
+				</div>
+				<input id="order-address" type="text" class="form-control">
+			</div>
+
+			<!-- 전화번호 -->
+			<div class="input-group mb-2">
+				<div class="input-group-prepend">
+					<div class="input-group-text">전화번호</div>
+				</div>
+				<input id="order-phone-number" type="text" class="form-control">
+			</div>
+		</div>
+
+		<!-- 주문하기 버튼 -->
+		<p class="lead">
+			<center><a onclick="orderButtonClick()" class="btn btn-primary btn-lg" href="#" role="button">주문하기</a></center>
+		</p>
+	</div>
+
+</body>
+</html>
