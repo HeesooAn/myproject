@@ -12,8 +12,6 @@ data = requests.get('https://www.genie.co.kr/chart/top200?ditc=D&rtm=N&ymd=20190
 # html을 추출하기 편리하게 파싱합니다.
 soup = BeautifulSoup(data.text, 'html.parser')
 
-genieSongs = soup.select('.list-wrap > tbody > tr > td.number')
-
 genieSongs = soup.select('.list-wrap > tbody > tr')
 
 for song in genieSongs:
@@ -32,7 +30,7 @@ for song in genieSongs:
         'title': title,
         'singer': singer
     }
-    db.genieSongs.insert_one(doc) # 이렇게 선언하면 바로 robo3T에 genieSongs라는 콜렉션이 생성됩니다.
+    # db.genieSongs.insert_one(doc) # 이렇게 선언하면 바로 robo3T에 genieSongs라는 콜렉션이 생성됩니다.
     # 실행을 여러번 할수록 db에 계속 누적될 것입니다.
 
 
